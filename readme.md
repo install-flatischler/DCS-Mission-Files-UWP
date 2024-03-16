@@ -5,7 +5,7 @@
    [![x64](https://img.shields.io/badge/Arch-x64-red.svg?style=plastic)](https://en.wikipedia.org/wiki/X86-64)
 
    # **DCS Mission Files UWP**
-   Check out the discord at [Link](https://mee6.xyz/i/n0mgQanPM7)
+   Check out the discord @[Link](https://mee6.xyz/i/n0mgQanPM7)
 	
    ## General
    This project is only maintained by me - refer to the sections below for installation instructions and FAQ.

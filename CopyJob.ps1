@@ -1,5 +1,4 @@
-﻿$SavedGames = "$env:Userprofile\Saved Games"
-Function Get-Folder($initialDirectory="")
+﻿Function Get-Folder($initialDirectory="")
 {
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms")|Out-Null
     $foldername = New-Object System.Windows.Forms.FolderBrowserDialog
@@ -12,11 +11,19 @@ Function Get-Folder($initialDirectory="")
     }
     return $folder
 }
+
 $dcsfolder = Get-Folder
-if ( -NOT (Test-Path "$dcsfolder\Mods\Aircraft")){
-    Copy-Item ".\Civil Aircraft Mod" "$dcsfolder\Mods\Aircraft\" -Recurse -Force -EA SilentlyContinue
-    Copy-Item ".\Civil Aircraft Mod" "$dcsfolder\Mods\Aircraft\" -Recurse -Force -EA SilentlyContinue
-    } ELSE {
-    Copy-Item ".\Civil Aircraft Mod\*" "$dcsfolder\Mods\Aircraft\Civil Aircraft Mod\" -Recurse -Force -EA SilentlyContinue
-    Copy-Item ".\Civil Aircraft Mod\*" "$dcsfolder\Mods\Aircraft\Civil Aircraft Mod\" -Recurse -Force -EA SilentlyContinue
+
+if ($dcsfolder -and -not (Test-Path (Join-Path -Path $dcsfolder -ChildPath "Mods\Aircraft")))
+{
+    Copy-Item -Path ".\Civil Aircraft Mod" -Destination (Join-Path -Path $dcsfolder -ChildPath "Mods\Aircraft") -Recurse -Force -ErrorAction SilentlyContinue
+}
+else
+{
+    $targetPath = Join-Path -Path $dcsfolder -ChildPath "Mods\Aircraft\Civil Aircraft Mod"
+    if (-not (Test-Path $targetPath))
+    {
+        New-Item -Path $targetPath -Type Directory -Force | Out-Null
     }
+    Copy-Item -Path ".\Civil Aircraft Mod\*" -Destination $targetPath -Recurse -Force -ErrorAction SilentlyContinue
+}

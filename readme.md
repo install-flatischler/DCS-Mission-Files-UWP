@@ -15,8 +15,7 @@
 
 
 `DCS Mission Files UWP` provides DCS players with necessary procedures in order to be able to participate in some operations
-- Contains several custom liveries
-- Sets a new centralized livery storage path
+- Supports easy deployment for DCS mods
 - Allows future deployments to be performed with less expenditure
 
 # Installation
